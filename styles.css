@@ -1,20 +1,30 @@
 /* ==========================================================================
    Base Styles & Reset
    ========================================================================== */
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html {
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
+    line-height: 1.65;
     color: #1e293b;
     background-color: #f8fafc;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ==========================================================================
@@ -25,15 +35,17 @@ body {
     border-bottom: 1px solid #e2e8f0;
     position: sticky;
     top: 0;
+    z-index: 100;
 }
 
 .nav-container {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1.25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 .site-title {
@@ -41,28 +53,39 @@ body {
     font-weight: 700;
     color: #0f172a;
     text-decoration: none;
+    letter-spacing: -0.01em;
+}
+
+.site-title:hover {
+    color: #1d4ed8;
 }
 
 .navbar ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #475569;
+    color: #334155;
     font-weight: 500;
-    padding: 0.25rem 0.5rem;
+    font-size: 0.95rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    border-bottom: 2px solid transparent;
 }
 
 .navbar a:hover {
-    color: #2563eb;
+    color: #1d4ed8;
+    background-color: #f1f5f9;
 }
 
 .navbar a.active {
-    color: #2563eb;
-    border-bottom: 2px solid #2563eb;
+    color: #1d4ed8;
+    background-color: #eff6ff;
+    border-bottom: 2px solid #1d4ed8;
     font-weight: 600;
 }
 
@@ -70,22 +93,24 @@ body {
    Main Content Layout
    ========================================================================== */
 .container {
-    max-width: 900px;
+    max-width: 860px;
     width: 100%;
     margin: 2rem auto;
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
     flex: 1;
 }
 
 .page-title {
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 2.1rem;
+    font-weight: 800;
     color: #0f172a;
     margin-bottom: 1.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
 }
 
 /* ==========================================================================
-   Content Sections
+   Content Sections & Cards
    ========================================================================== */
 .section {
     background-color: #ffffff;
@@ -93,37 +118,46 @@ body {
     border-radius: 8px;
     padding: 1.75rem;
     margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
 .section h2 {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+    font-weight: 700;
     color: #0f172a;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #f1f5f9;
     padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f1f5f9;
+    letter-spacing: -0.01em;
 }
 
 .section h3 {
-    font-size: 1.15rem;
-    color: #1e293b;
-    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-top: 0.75rem;
     margin-bottom: 0.25rem;
+    line-height: 1.35;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    color: #64748b;
-    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 0.85rem;
+    line-height: 1.45;
 }
 
 .date-text {
-    font-size: 0.9rem;
-    color: #64748b;
-    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    margin-bottom: 0.65rem;
 }
 
 .section p {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
+    color: #334155;
 }
 
 .section p:last-child {
@@ -131,51 +165,77 @@ body {
 }
 
 /* ==========================================================================
-   Lists & Items
+   Entries & Lists
    ========================================================================== */
-.content-list {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.content-list li {
-    margin-bottom: 0.5rem;
-}
-
 .entry {
     margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #f8fafc;
 }
 
 .entry:last-child {
     margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.content-list {
+    margin-left: 1.25rem;
+    margin-bottom: 0.85rem;
+    padding-left: 0.25rem;
+}
+
+.content-list li {
+    margin-bottom: 0.45rem;
+    color: #334155;
+    line-height: 1.55;
+}
+
+.content-list li:last-child {
+    margin-bottom: 0;
+}
+
+.content-list strong {
+    color: #0f172a;
 }
 
 /* ==========================================================================
-   Contact & Links
+   Contact & Interactive Links
    ========================================================================== */
 .contact-list {
     list-style: none;
+    margin-top: 0.25rem;
 }
 
 .contact-list li {
     margin-bottom: 0.5rem;
+    color: #334155;
+}
+
+.contact-list li:last-child {
+    margin-bottom: 0;
 }
 
 .contact-list strong {
-    color: #334155;
+    color: #0f172a;
     display: inline-block;
     min-width: 80px;
 }
 
-.contact-list a,
-.entry a {
-    color: #2563eb;
-    text-decoration: none;
+a {
+    color: #1d4ed8;
+    text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
-.contact-list a:hover,
-.entry a:hover {
+a:hover {
+    color: #1e40af;
     text-decoration: underline;
+}
+
+.navbar a,
+.site-title {
+    text-decoration: none;
 }
 
 /* ==========================================================================
@@ -185,31 +245,80 @@ body {
     background-color: #ffffff;
     border-top: 1px solid #e2e8f0;
     text-align: center;
-    padding: 1.5rem;
-    font-size: 0.9rem;
+    padding: 1.75rem 1.25rem;
+    font-size: 0.875rem;
     color: #64748b;
     margin-top: auto;
 }
 
 /* ==========================================================================
-   Responsive Design (Mobile)
+   Responsive Design (Mobile & Narrow Viewports)
    ========================================================================== */
-@media (max-width: 600px) {
+@media (max-width: 680px) {
     .nav-container {
         flex-direction: column;
-        gap: 0.75rem;
         align-items: flex-start;
+        padding: 0.85rem 1rem;
+        gap: 0.65rem;
+    }
+
+    .navbar {
+        width: 100%;
     }
 
     .navbar ul {
-        gap: 1rem;
+        width: 100%;
+        gap: 0.35rem;
+    }
+
+    .navbar a {
+        padding: 0.4rem 0.65rem;
+        font-size: 0.9rem;
+    }
+
+    .container {
+        margin: 1.25rem auto;
+        padding: 0 1rem;
     }
 
     .page-title {
-        font-size: 1.6rem;
+        font-size: 1.65rem;
+        margin-bottom: 1.15rem;
     }
 
     .section {
         padding: 1.25rem;
+        margin-bottom: 1.15rem;
+    }
+
+    .section h2 {
+        font-size: 1.2rem;
+    }
+
+    .section h3 {
+        font-size: 1.05rem;
+    }
+
+    .content-list {
+        margin-left: 1rem;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    .site-title {
+        font-size: 1.15rem;
+    }
+
+    .navbar ul {
+        justify-content: flex-start;
+    }
+
+    .section {
+        padding: 1rem;
+    }
+
+    .contact-list strong {
+        min-width: 65px;
     }
 }
